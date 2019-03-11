@@ -4,7 +4,6 @@
 #define NO 0
 int main(void)
 {
-	printf("Please, enter some words:\n");
 	int c; // текущий символ из потока
 	int word; // признак слова
 	int cnt; // счётчик
@@ -15,6 +14,7 @@ int main(void)
 	word = NO;
 	vowel_fnd = NO;
 	symb = NO;
+	printf("Please, enter some words:\n");
 	while ((c = getchar()) != EOF) // цикл чтения символов из потока, связанного с клавиатурой
 	{
 		if (c == ' ' || c == '.' || c == '\n' || c == ',' || c == '\t') // если найден разделитель, проверить...
