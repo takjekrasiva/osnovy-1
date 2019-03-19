@@ -42,10 +42,10 @@ void process_line(char buffer[])
 						{
 							buffer[pos++] = buffer[j]; // ???
 						}
-						buffer[pos++] = c; // ???
 					}
 				}
 			}
+			buffer[pos++] = c; // ???
 			word = NO;
 			symb = NO;
 			overkill = NO;
