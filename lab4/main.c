@@ -38,11 +38,9 @@ void process_line(char buffer[])
 			{
 				for (j = start; j < ish; j++) // слово не подлежит удалению оно копируется в результирующую строку
 				{
-					buffer[res] = buffer[j]; // копирование слова
-					res++;
+					buffer[res++] = buffer[j]; // копирование слова
 				}
-				buffer[res] = c;
-				res++;
+				buffer[res++] = c;
 			}
 			word = NO;
 			symb = NO;
