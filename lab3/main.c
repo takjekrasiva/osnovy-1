@@ -32,7 +32,8 @@ void process_line(char buffer[])
 	do
 	{
 		c = buffer[ish]; // взять текущий символ из буфера
-		if (c == ' ' || c == '.' || c == ',' || c == '\n' || c == '\0' || c == '?' || c == '!' || c == ';' || c == ':') // разделитель найден
+		if (c == ' ' || c == '.' || c == ',' || c == '\n' || c == '\0' || c == '?' || c == '!' || c == ';' || c == ':' || 
+			c == '-' || c == '_' || c == '(' || c == ')' || c == '\t' || c == '/' || c == '&' || c == '"') // разделитель найден
 		{
 			if (symb == NO && word == YES && overkill == NO || symb == YES && word == YES) // если подходит по-1му/2му условию выполнить...
 			{
@@ -41,9 +42,9 @@ void process_line(char buffer[])
 					buffer[res++] = buffer[j]; // копирование слова
 				}
 			}
-			else
+			else // если это знак, то...
 			{
-				buffer[res++] = buffer[ish];
+				buffer[res++] = buffer[ish]; // возвращаем разделитель на место
 			}
 			word = NO;
 			symb = NO;
