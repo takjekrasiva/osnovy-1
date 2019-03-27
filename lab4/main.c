@@ -4,12 +4,15 @@
 #define YES 1
 #define NO 0
 #define MAXLINE 1000
+int N; // наибольшее количество букв в строке
 void process_line(char buffer[]); // объявляем функцию
 int main(void)
 {
 	char line[MAXLINE];
 	printf("Please, enter some words\nWARNING: words which consist of more than N letters will be deleted\n");
 	gets(line);
+	printf("Enter N=");
+	scanf("%d", &N);
 	process_line(line);
 	printf("Result:\n");
 	puts(line);
@@ -26,15 +29,12 @@ void process_line(char buffer[])
 	int start = 0; // позиция начала слова
 	int n = 0; // сщетчик букв в слове
 	int j;
-	int N; // наибольшее количество букв в строке
-	printf("Enter N="); // вывод подсказки
-	scanf("%d", &N); // ввод N с клавиатуры
 	do
 	{
 		c = buffer[ish]; // взять текущий символ из буфера
-		if (c == ' ' || c == '.' || c == ',' || c == '\n' || c == '\0' || c == '?' || c == '!' || c == ';' || c == ':') // разделитель
+		if (c == ' ' || c == '.' || c == ',' || c == '\n' || c == '\0' || c == '?' || c == '!' || c == ';' || c == ':') // разделитель найден
 		{
-			if (symb == NO && word == YES && overkill == NO) // если слово без лиш-х символов, не превышет зн-е N, выполнить...
+			if (symb == NO && word == YES && overkill == NO || symb == YES && word == YES) // если подходит по-1му/2му условию выполнить...
 			{
 				for (j = start; j <= ish; j++) // слово не подлежит удалению оно копируется в результирующую строку вместе со своим разделителем
 				{
@@ -42,6 +42,7 @@ void process_line(char buffer[])
 				}
 				if (c != ' ') // если разделитель не пробел, то надо...
 				{
+					
 					if (buffer[ish + 1] == ' ') // проверить след символ, если это пробел, то надо...
 					{
 						buffer[res++] = ' '; // вернуть его назад
@@ -71,6 +72,7 @@ void process_line(char buffer[])
 			word = YES;
 		}
 		ish++;
-	} while (c != '\0'); // продолжать до конца строки
+	}
+	while (c != '\0'); // продолжать до конца строки
 	buffer[res] = '\0';// устанавливаем конец файла
 }
