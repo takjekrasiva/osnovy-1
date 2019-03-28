@@ -6,6 +6,7 @@
 #define MAXLINE 1000
 int N; // наибольшее количество букв в строке
 void process_line(char buffer[]); // объявляем функцию
+
 int main(void)
 {
 	char line[MAXLINE];
@@ -18,6 +19,7 @@ int main(void)
 	puts(line);
 	return 0;
 }
+
 void process_line(char buffer[])
 {
 	char c; // текущий символ
@@ -29,10 +31,12 @@ void process_line(char buffer[])
 	int start = 0; // позиция начала слова
 	int n = 0; // сщетчик букв в слове
 	int j;
+
 	do
 	{
 		c = buffer[ish]; // взять текущий символ из буфера
-		if (c == ' ' || c == '.' || c == ',' || c == '\n' || c == '\0' || c == '?' || c == '!' || c == ';' || c == ':') // разделитель найден
+		if (c == ' ' || c == '.' || c == ',' || c == '\n' || c == '\0' || c == '?' || c == '!' || c == ';' || c == ':' || 
+			c == '-' || c == '_' || c == '(' || c == ')' || c == '\t' || c == '/' || c == '&' || c == '"') // разделитель найден
 		{
 			if (symb == NO && word == YES && overkill == NO || symb == YES && word == YES) // если подходит по-1му/2му условию выполнить...
 			{
@@ -40,20 +44,19 @@ void process_line(char buffer[])
 				{
 					buffer[res++] = buffer[j]; // копирование слова
 				}
-				if (c != ' ') // если разделитель не пробел, то надо...
-				{
-					
-					if (buffer[ish + 1] == ' ') // проверить след символ, если это пробел, то надо...
-					{
-						buffer[res++] = ' '; // вернуть его назад
-					}
-				}
 			}
+
+			else // если это разделитель, то...
+			{
+				buffer[res++] = buffer[ish]; // возвращаем разделитель на место
+			}
+
 			word = NO;
 			symb = NO;
 			overkill = NO;
 			n = 0;
 		}
+
 		else
 		{
 			n++; // найдена новая буква, увеличиваем счетчик букв
