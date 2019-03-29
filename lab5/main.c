@@ -5,27 +5,20 @@ int main(void)
 {
 	int x[N]; // массив из N элементов вводится с клавиатуры
 	int y[N]; // массив в который перезаписывается массив x
-	int i;
-	int a = 9;
+	int i; // позиция символа в исходной строке
+	int a = 9; // позиция символа в результирующей строке
 	printf("Please, enter 10 integer numbers\nWARNING: they will be rearranged in reverse order\n");
-	for (i = 0; i < N; i++) // ввод массива
+	for (i = 0; i < N; i++) // ввод массива x и копирование его в y
 	{
 		scanf("%d", &x[i]);
-	}
-	for (i = 0; i < N; i++) // переписываем массив x в массив y
-	{
 		y[i] = x[i];
 	}
-	for (i = 0; i < N; i++) // переставляем числа в зеркальном порядке
+	printf("Result:\n");
+	for (i = 0; i < N; i++) // переставляем числа в зеркальном порядке и выводим
 	{
 		x[i] = y[a];
 		a = a - 1;
-	}
-	printf("Result:\n");
-	for (i = 0; i < N; i++) // вывод массива
-	{
 		printf("%d ", x[i]);
 	}
-	printf("\n");
 	return 0;
 }
