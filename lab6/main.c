@@ -30,7 +30,19 @@ int main(void)
 			scanf("%d", &MAS[str][stlb]);
 		}
 	}
+	printf("\n");
 
+	/*вывод исходного массива для подсказки*/
+	/*for (str = 0; str < N; str++)
+	{
+		for (stlb = 0; stlb < K; stlb++)
+		{
+			printf("%4d ", MAS[str][stlb]);
+		}
+		printf("\n");
+	}
+	printf("\n");*/
+	
 	/*ищем зеркальные строки*/
 	for (str = 0; str < N; str++)
 	{
