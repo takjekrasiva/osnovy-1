@@ -13,7 +13,7 @@ int main(void)
 	int str; // позиция числа по строке
 	int stlb; // позиция числа по столбцу
 	int obrstlb; // позиция по столбцу с конца
-	int flag = YES; // искомый признак
+	int flag; // искомый признак
 
 	/*ввод N и K с клавиатуры*/
 	printf("N = ");
@@ -33,7 +33,8 @@ int main(void)
 	printf("\n");
 
 	/*вывод исходного массива для подсказки*/
-	/*for (str = 0; str < N; str++)
+	printf("original mass\n");
+	for (str = 0; str < N; str++)
 	{
 		for (stlb = 0; stlb < K; stlb++)
 		{
@@ -41,12 +42,14 @@ int main(void)
 		}
 		printf("\n");
 	}
-	printf("\n");*/
+	printf("\n");
 	
 	/*ищем зеркальные строки*/
+	printf("processed mass\n");
 	for (str = 0; str < N; str++)
 	{
-		for (stlb = 0, obrstlb = K-1; str != obrstlb; stlb++, obrstlb--)
+		flag = YES;
+		for (stlb = 0, obrstlb = K-1; stlb < obrstlb; stlb++, obrstlb--)
 		{
 			if (MAS[str][stlb] != MAS[str][obrstlb])
 			{
