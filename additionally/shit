@@ -8,6 +8,7 @@
 int main(void)
 {
 	int MAS[MAX][MAX]; // обьявляем двумерный массив
+	int COPY[MAX][MAX];
 	int N; // количество строк
 	int K; // количество столбцов
 	int str; // позиция числа по строке
@@ -16,7 +17,11 @@ int main(void)
 	int min = 0; // 
 	int flag;
 	int Max = 0; // 
-	int Max = 0; // 
+	int Min = 100000; // 
+	int s;
+	int l;
+	int summ=0;
+
 	/*ввод N и K с клавиатуры*/
 	printf("N = ");
 	scanf("%d", &N);
@@ -30,6 +35,7 @@ int main(void)
 		{
 			printf("Element number %d %d: ", str + 1, stlb + 1);
 			scanf("%d", &MAS[str][stlb]);
+			COPY[str][stlb] = MAS[str][stlb];
 		}
 	}
 	printf("\n");
@@ -46,29 +52,33 @@ int main(void)
 	}
 	printf("\n");
 
-	/*ищем зеркальные строки*/
+	
 	printf("processed mass\n");
 	for (str = 0; str < N; str++)
 	{
 		flag = YES;
 		for (stlb = 0; stlb < N; stlb++)
 		{
-			max = max + MAS[str][stlb];
-			if (max > Max)
-
+			summ = summ + MAS[str][stlb];
 		}
-		if (flag == YES) // зеркальные строки аннулируем и выводим
+		if (summ > Max)
+		{
+			Max = summ;
+			s = str;
+		}
+		if (summ < Min)
+		{
+			Min = summ;
+			l = str;
+		}
+		for (stlb = 0; stlb < N; stlb++)
+		{
+			MAS[s][stlb] = COPY[l][stlb];
+			MAS[l][stlb] = COPY[s][stlb];
+		}
+		for (str = 0; str < N; str++)
 		{
 			for (stlb = 0; stlb < K; stlb++)
-			{
-				MAS[str][stlb] = 0;
-				printf("%4d ", MAS[str][stlb]);
-			}
-			printf("\n");
-		}
-		else
-		{
-			for (stlb = 0; stlb < K; stlb++) // не зеркальные строки просто выводим
 			{
 				printf("%4d ", MAS[str][stlb]);
 			}
