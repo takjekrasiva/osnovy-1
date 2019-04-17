@@ -17,7 +17,7 @@ int main(void)
 	int min = 100000; // минимальная сумма строки
 	int m; // строка с максимальной суммой
 	int s; // строка с минимальной суммой
-	int summ = 0; // сумма строки
+	int summ; // сумма строки
 
 	/*ввод N и K с клавиатуры*/
 	printf("N = ");
@@ -52,7 +52,7 @@ int main(void)
 	for (str = 0; str < N; str++)
 	{
 		/*находим сумму строки*/
-		for (stlb = 0; stlb < N; stlb++)
+		for (stlb = 0, summ = 0; stlb < N; stlb++)
 		{
 			summ = summ + MAS[str][stlb];
 		}
@@ -70,22 +70,22 @@ int main(void)
 		}
 	}
 
-		/*меняем максимальные и минимальные строки местами*/
-		for (stlb = 0; stlb < N; stlb++)
-		{
-			MAS[m][stlb] = COPY[s][stlb];
-			MAS[s][stlb] = COPY[m][stlb];
-		}
+	/*меняем максимальные и минимальные строки местами*/
+	for (stlb = 0; stlb < N; stlb++)
+	{
+		MAS[m][stlb] = COPY[s][stlb];
+		MAS[s][stlb] = COPY[m][stlb];
+	}
 
-		/*вывод результирующего массива*/
-		printf("processed mass\n");
-		for (str = 0; str < N; str++)
+	/*вывод результирующего массива*/
+	printf("processed mass\n");
+	for (str = 0; str < N; str++)
+	{
+		for (stlb = 0; stlb < K; stlb++)
 		{
-			for (stlb = 0; stlb < K; stlb++)
-			{
-				printf("%4d ", MAS[str][stlb]);
-			}
-			printf("\n");
+			printf("%4d ", MAS[str][stlb]);
 		}
+		printf("\n");
+	}
 	return 0;
 }
