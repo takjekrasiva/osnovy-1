@@ -8,19 +8,16 @@
 int main(void)
 {
 	int MAS[MAX][MAX]; // обьявляем двумерный массив
-	int COPY[MAX][MAX];
+	int COPY[MAX][MAX]; // обьявляем массив в который будем копировать массив MAS
 	int N; // количество строк
 	int K; // количество столбцов
 	int str; // позиция числа по строке
 	int stlb; // позиция числа по столбцу
-	int max = 0; // 
-	int min = 0; // 
-	int flag;
-	int Max = 0; // 
-	int Min = 100000; // 
-	int s;
-	int l;
-	int summ=0;
+	int max = 0; // максимальная сумма строки
+	int min = 100000; // минимальная сумма строки
+	int m; // строка с максимальной суммой
+	int s; // строка с минимальной суммой
+	int summ = 0; // сумма строки
 
 	/*ввод N и K с клавиатуры*/
 	printf("N = ");
@@ -35,7 +32,7 @@ int main(void)
 		{
 			printf("Element number %d %d: ", str + 1, stlb + 1);
 			scanf("%d", &MAS[str][stlb]);
-			COPY[str][stlb] = MAS[str][stlb];
+			COPY[str][stlb] = MAS[str][stlb]; // копируем массив MAS в массив COPY
 		}
 	}
 	printf("\n");
@@ -51,31 +48,37 @@ int main(void)
 		printf("\n");
 	}
 	printf("\n");
-
 	
-	printf("processed mass\n");
 	for (str = 0; str < N; str++)
 	{
-		flag = YES;
+		/*находим сумму строки*/
 		for (stlb = 0; stlb < N; stlb++)
 		{
 			summ = summ + MAS[str][stlb];
 		}
-		if (summ > Max)
+
+		if (summ > max) // проверяем является ли эта строка с максимальной суммой
 		{
-			Max = summ;
-			s = str;
+			max = summ;
+			m = str; // если является, запоминаем
 		}
-		if (summ < Min)
+
+		if (summ < min) // проверяем является ли эта строка с минимальной суммой
 		{
-			Min = summ;
-			l = str;
+			min = summ;
+			s = str; // если является, запоминаем
 		}
+	}
+
+		/*меняем максимальные и минимальные строки местами*/
 		for (stlb = 0; stlb < N; stlb++)
 		{
-			MAS[s][stlb] = COPY[l][stlb];
-			MAS[l][stlb] = COPY[s][stlb];
+			MAS[m][stlb] = COPY[s][stlb];
+			MAS[s][stlb] = COPY[m][stlb];
 		}
+
+		/*вывод результирующего массива*/
+		printf("processed mass\n");
 		for (str = 0; str < N; str++)
 		{
 			for (stlb = 0; stlb < K; stlb++)
@@ -84,6 +87,5 @@ int main(void)
 			}
 			printf("\n");
 		}
-	}
 	return 0;
 }
