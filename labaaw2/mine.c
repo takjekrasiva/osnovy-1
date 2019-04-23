@@ -3,7 +3,7 @@
 void main(void)
 {
 	int i;
-	float g, k, z;
+	float g
 	float S, step;
 	S=0.0; step=0.0;
 	g=3; k=1; z=1;
@@ -13,6 +13,6 @@ S=S+z*g/k;
 z=-z;
 g=g+1; k=k+3;
 }
-printf ( “s=%.3f”, S );
+printf ( â€œs=%.3fâ€, S );
 getch ();
 }
